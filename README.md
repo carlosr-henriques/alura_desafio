@@ -46,7 +46,7 @@ A solução desenvolvida permite a análise de feedback feita pelos usuários da
 git clone https://github.com/carlosr-henriques/alura_desafio.git
 ```
 
-2. Instale as dependências necessárias (recomenda-se utilizar um ambiente virtual):
+2. Instale as dependências necessárias (recomenda-se utilizar um ambiente virtual). O projeto foi desenvolvido com a versão 3.11.4 do Python:
 
 3. Execute o arquivo **app.py** na sua IDE de preferência e acesse o site localmente através do link disponibilizado pelo miniframework Flask. Para testar o envio dos dados, utilize a solução Thunder Client ou a solução Postman. Ambas precisam ser instaladas na máquina. A solução Thunder Cliente pode ser instalada como uma extensão do VS Code. Para testar o email, basta executar o arquivo **create_email.py**.
 
