@@ -17,6 +17,10 @@ EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
 
 def data_semana_anterior():
 
+    """
+        Essa função extrai a data inicial e final da última semana, para informar o período analisado no email enviado aos Stackholders. Também pode ser usado para filtrar os dados no banco de dados.
+    """
+
     data_atual = datetime.datetime.now()
     semana_atual = data_atual.isocalendar()[1]
 
@@ -31,6 +35,10 @@ def data_semana_anterior():
     return data_inicio_semana, data_fim_semana
 
 def gera_corpo_email():
+
+    """
+        Essa função gera o email enviado aos Stackholders.  
+    """
     
     df = select()
 

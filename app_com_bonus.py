@@ -9,6 +9,7 @@ genai.configure(api_key=os.environ["GEMINI_API_KEY"])
 
 app = Flask(__name__)
 
+
 @app.route('/')
 def index():
     # Obter os dados do banco de dados
@@ -21,9 +22,9 @@ def index():
 
     return render_template(
         'index.html',
-        positive_percentage=round(percentagem_positivos, 2),
-        negative_percentage=round(percentagem_negativos, 2),
-        inconclusive_percentage=round(percentagem_inconclusivos, 2),
+        positive_percentage=percentagem_positivos,
+        negative_percentage=percentagem_negativos,
+        inconclusive_percentage=percentagem_inconclusivos,
         feature_counts=feature_counts
     )            
             
@@ -32,7 +33,24 @@ def receive_feedback():
     
     feedbacks = request.json
 
-    instruction = (
+    check_instruction = (
+        "Você é um analisador dos feedbacks enviados pelos usuários do app AluMind. Sua tarefa é verificar se o valor da chave 'feedback' na estrutura JSON apresentada pode ser classificado de acordo com o seu sentimento (positivo, negativo ou neutro) e identificar as funcionalidades sugeridas no feedback, se houver. Se não for possível classificar o feedback ou identificar funcionalidades sugeridas, gere a resposta: 'Ilegítimo'. Caso contrário, gere a resposta: 'Legítimo'."
+    )
+
+    version = 'models/gemini-1.5-flash'
+    model = genai.GenerativeModel(version, 
+                                  system_instruction=check_instruction)
+
+    prompt = f"""Analise se o feedback abaixo é legítico ou ilegítimo.
+
+    {feedbacks}"""
+
+    response = model.generate_content(prompt)
+    response = response.text
+
+    if response.lower() == "legítimo":
+
+        instruction = (
             "Sua tarefa é analisar os feedbacks vindos dos usuários, classificá-los a partir do seu sentimento e elencar as possíveis melhorias contidas neles." 
             "Cada feedback deve ser marcado como POSITIVO, NEGATIVO e INCONCLUSIVO." 
             "Cada feedback contém sugestões de funcionalidades feitas pelos usuários."
@@ -48,23 +66,25 @@ def receive_feedback():
             "Return: list[Recipe]"
         )
 
-    version = 'models/gemini-1.5-flash'
-    model = genai.GenerativeModel(version, 
-                                system_instruction=instruction,
-                                generation_config={"response_mime_type": "application/json"})
+        version = 'models/gemini-1.5-flash'
+        model = genai.GenerativeModel(version, 
+                                    system_instruction=instruction,
+                                    generation_config={"response_mime_type": "application/json"})
 
-    prompt = f"""Analise o feedback abaixo, informe o sentimento e o recurso requisitado pelo usuário
+        prompt = f"""Analise o feedback abaixo, informe o sentimento e o recurso requisitado pelo usuário
 
-    {feedbacks}"""
+        {feedbacks}"""
 
-    response = model.generate_content(prompt)
-    response = json.loads(response.text)
+        response = model.generate_content(prompt)
+        response = json.loads(response.text)
 
-    create_database()
+        create_database()
 
-    insert(response)
+        insert(response)
 
-    return response
+        return response
+    else:
+        return "O feedback não foi armazenado e processado. A I.A marcou o feedback como ilegítimo"
 
 if __name__ == "__main__":
     app.run(debug=True)
