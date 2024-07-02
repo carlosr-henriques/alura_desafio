@@ -50,6 +50,6 @@ git clone https://github.com/carlosr-henriques/alura_desafio.git
 
 3. Execute o arquivo **app.py** na sua IDE de preferência e acesse o site localmente através do link disponibilizado pelo miniframework Flask. Para testar o envio dos dados, utilize a solução Thunder Client ou a solução Postman. Ambas precisam ser instaladas na máquina. A solução Thunder Cliente pode ser instalada como uma extensão do VS Code. Para testar o email, basta executar o arquivo **create_email.py**.
 
-**Obs.:**: Foi disponibilizado o arquivo **app_com_bonus.py**, contendo a solução bônus. A solução não está funcionando da forma adequada, porém, foi disponibilizada para avaliação.
+**Obs.:** : Foi disponibilizado o arquivo **app_com_bonus.py**, contendo a solução bônus. A solução não está funcionando da forma adequada, porém, foi disponibilizada para avaliação.
 
    
