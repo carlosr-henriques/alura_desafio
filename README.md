@@ -38,5 +38,18 @@ O modelo escolhido para o case foi o Gemini 1.5 Flash. Esse modelo permite alcan
 
 A solução desenvolvida permite a análise de feedback feita pelos usuários da AluMind, armazenamento dos feedbacks analisados, visão analítica sobre os feedbacks através de uma relatório web e divulgação dos resultados para os stackholders, que poderão identificar as dores ou sugestões dos clientes, a satisfação e insatisfação dos clientes.
 
+# Como executar o projeto
+
+1. Clone o repositório:
+
+```
+git clone https://github.com/carlosr-henriques/alura_desafio.git
+```
+
+2. Instale as dependências necessárias (recomenda-se utilizar um ambiente virtual):
+
+3. Execute o arquivo **app.py** na sua IDE de preferência e acesse o site localmente através do link disponibilizado pelo miniframework Flask. Para testar o envio dos dados, utilize a solução Thunder Client ou a solução Postman. Ambas precisam ser instaladas na máquina. A solução Thunder Cliente pode ser instalada como uma extensão do VS Code. Para testar o email, basta executar o arquivo **create_email.py**.
+
+**Obs.:**: Foi disponibilizado o arquivo **app_com_bonus.py**, contendo a solução bônus. A solução não está funcionando da forma adequada, porém, foi disponibilizada para avaliação.
 
    
