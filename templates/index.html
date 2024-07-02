@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Analysis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div id="content">
+        {% block content %}{% endblock %}
+    </div>
+    <h1>Feedback Analysis</h1>
+    
+    <h2>Porcentagem de feedbacks positivos</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Sentimento</th>
+                <th>Porcentagem</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Positivos</td>
+                <td>{{ positive_percentage }}%</td>
+            </tr>
+            <tr>
+                <td>Negativos</td>
+                <td>{{ negative_percentage }}%</td>
+            </tr>
+            <tr>
+                <td>Inconclusivos</td>
+                <td>{{ inconclusive_percentage }}%</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <h2>Features mais pedidas</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Recurso</th>
+                <th>Quantidade</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for row in feature_counts.iterrows() %}
+            <tr>
+                <td>{{ row[1]['Feature'] }}</td>
+                <td>{{ row[1]['Count'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div id="footer">
+        {% block footer %}
+        &copy; Copyright 2006 by <a href="http://mydomain.tld">myself</a>.
+        {% endblock %}
+    </div>
+</body>
+</html>

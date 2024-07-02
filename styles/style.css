@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+{% extends "base.html" %}
+{% block title %}Index{% endblock %}
+
+{% block html_head %}
+  <style type="text/css">
+    .important {
+      color: #336699;
+    }
+  </style>
+{% endblock %}
+
+{% block content %}
+    <h1>Index</h1>
+    <p class="important">
+      Welcome on my awsome homepage.
+    </p>
+{% endblock %}
